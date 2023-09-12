@@ -1,0 +1,33 @@
+[gwrite.my_own_plotter]
+unit = "mm"
+document_start = """
+G21 
+G90 
+G92 X0.00 Y0.00 Z3.00
+
+G1 Z0.00 F1000.00 
+G1 Z3.00 F1000.00
+M0
+"""
+segment_first = """
+G1 X{x:.4f} Y{y:.4f} F3000.00
+ (Pen down)
+G1 Z0.00 F1000.00
+"""
+line_end = """
+G1 X{x:.4f} Y{y:.4f} F3000.00
+G1 Z3.00 F1000.00
+
+"""
+segment = """
+G1 X{x:.4f} Y{y:.4f} F3000.00
+"""
+document_end = """
+G1 Z3.00 F1000.00
+G1 X0 Y0 F3000.00
+G1 Z3.00 F1000.00 
+G1 X0.00 Y0.00 F3000.00 
+"""
+vertical_flip = true
+info= "This gcode profile is correctly inverted across the y-axis"
+
